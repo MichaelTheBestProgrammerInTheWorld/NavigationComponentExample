@@ -6,24 +6,24 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SecondFragment.OnFragmentInteractionListener} interface
+ * {@link ThirdFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SecondFragment#newInstance} factory method to
+ * Use the {@link ThirdFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SecondFragment extends Fragment {
+public class ThirdFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,7 +35,7 @@ public class SecondFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public SecondFragment() {
+    public ThirdFragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +45,11 @@ public class SecondFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondFragment.
+     * @return A new instance of fragment ThirdFragment.
      */
 
-    public static SecondFragment newInstance(String param1, String param2) {
-        SecondFragment fragment = new SecondFragment();
+    public static ThirdFragment newInstance(String param1, String param2) {
+        ThirdFragment fragment = new ThirdFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,7 +70,7 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.fragment_third, container, false);
     }
 
 
@@ -116,18 +116,19 @@ public class SecondFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        SecondFragmentArgs secondFragmentArgs =
-                SecondFragmentArgs.fromBundle(getArguments());
-        String username = secondFragmentArgs.getUsername();
-        TextView textView = getView().findViewById(R.id.name_txt);
-        textView.setText(username);
-
-        Button button = getView().findViewById(R.id.sec_to_third_btn);
+        Button button = getView().findViewById(R.id.third_to_main_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Navigation.findNavController(v).navigate(
+//                        ThirdFragmentDirections.actionThirdToMain()
+//                );
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.mainFragment, true)
+                        .build();
+
                 Navigation.findNavController(v).navigate(
-                        SecondFragmentDirections.actionSecondToThird()
+                        R.id.action_third_to_main, null, navOptions
                 );
             }
         });

@@ -8,7 +8,8 @@ import android.os.Bundle;
 import com.michaelmagdy.navigationcomponentexample.ui.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements SecondFragment.OnFragmentInteractionListener {
+        implements SecondFragment.OnFragmentInteractionListener,
+        ThirdFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

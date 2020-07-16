@@ -23,5 +23,18 @@
             android:name="username"
             app:argType="string"
             android:defaultValue="No Name Added" />
+        <action
+            android:id="@+id/action_second_to_third"
+            app:destination="@id/thirdFragment"
+            app:popUpTo="@+id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.michaelmagdy.navigationcomponentexample.ThirdFragment"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_third" >
+        <action
+            android:id="@+id/action_third_to_main"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>
